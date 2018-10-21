@@ -16,13 +16,13 @@ public class AList<E> implements List<E> {
 
 	@Override
 	public boolean add(E e) {
-		E[] temp = (E[]) new Object[size() + 1];
+		E[] t = (E[]) new Object[size() + 1];
 		for (int i = 0; i < size(); i++) {
-			temp[i] = array[i];
+			t[i] = array[i];
 		}
-		temp[size()] = e;
+		t[size()] = e;
 
-		array = temp;
+		array = t;
 		return true;
 	}
 
@@ -30,38 +30,38 @@ public class AList<E> implements List<E> {
 	public void add(int index, E e) {
 
 		if (index < 0 || index > size()) {
-			throw new IndexOutOfBoundsException("Majmune, ne mores unijet indeks koji ne postoji!");
+			throw new IndexOutOfBoundsException("Pogrešan indeks!");
 		}
 
-		E[] temp = (E[]) new Object[size() + 1];
+		E[] t = (E[]) new Object[size() + 1];
 
 		for (int i = 0; i < index; i++) {
-			temp[i] = array[i];
+			t[i] = array[i];
 		}
-		temp[index] = e;
+		t[index] = e;
 		for (int i = index + 1; i < size() + 1; i++) {
-			temp[i] = array[i - 1];
+			t[i] = array[i - 1];
 		}
-		array = temp;
+		array = t;
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 
-		E[] temp = (E[]) new Object[size() + c.size()];
-		E[] temp2 = (E[]) c.toArray();
+		E[] t = (E[]) new Object[size() + c.size()];
+		E[] t1 = (E[]) c.toArray();
 
 		for (int i = 0; i < size(); i++) {
-			temp[i] = array[i];
+			t[i] = array[i];
 		}
-		for (int i = size(); i < temp.length;) {
-			for (int j = 0; j < temp2.length;) {
-				temp[i] = temp2[j];
+		for (int i = size(); i < t.length;) {
+			for (int j = 0; j < t1.length;) {
+				t[i] = t1[j];
 				i++;
 				j++;
 			}
 		}
-		array = temp;
+		array = t;
 		return true;
 	}
 
@@ -69,7 +69,7 @@ public class AList<E> implements List<E> {
 	public boolean addAll(int index, Collection<? extends E> c) {
 		// TODO Auto-generated method stub
 
-		E[] temp = (E[]) new Object[size() + c.size()];
+		E[] t = (E[]) new Object[size() + c.size()];
 
 		if (index < 0 || index > size()) {
 			throw new IndexOutOfBoundsException();
@@ -79,27 +79,27 @@ public class AList<E> implements List<E> {
 		}
 
 		for (int i = 0; i < index; i++) {
-			temp[i] = array[i];
+			t[i] = array[i];
 		}
 
-		E[] temp2 = (E[]) c.toArray();
-		for (int i = index; i < index + temp2.length;) {
-			for (int j = 0; j < temp2.length;) {
-				temp[i] = temp2[j];
+		E[] t1 = (E[]) c.toArray();
+		for (int i = index; i < index + t1.length;) {
+			for (int j = 0; j < t1.length;) {
+				t[i] = t1[j];
 				i++;
 				j++;
 			}
 		}
 
-		for (int i = index + c.size(); i < temp.length;) {
+		for (int i = index + c.size(); i < t.length;) {
 			for (int j = index; j < size();) {
-				temp[i] = array[j];
+				t[i] = array[j];
 				i++;
 				j++;
 			}
 		}
 
-		array = temp;
+		array = t;
 
 		return false;
 	}
