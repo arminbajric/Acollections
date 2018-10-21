@@ -80,7 +80,7 @@ public class AMap<K, V> implements Map<K, V> {
 	public V get(Object o) {
 		// TODO Auto-generated method stub
 		if (!containsKey(o)) {
-			throw new IllegalArgumentException("Otog elementa nema evodj!");
+			throw new IllegalArgumentException("Element ne postoji!");
 		}
 		V element = values[0];
 		for (int i = 1; i < keys.length; i++) {

@@ -32,10 +32,10 @@ public class ASet<E> implements Set<E> {
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 		// TODO Auto-generated method stub
-		E[] temp = (E[]) c.toArray();
-		for (int i = 0; i < temp.length; i++) {
-			if (!contains(temp[i])) {
-				add(temp[i]);
+		E[] t = (E[]) c.toArray();
+		for (int i = 0; i < t.length; i++) {
+			if (!contains(t[i])) {
+				add(t[i]);
 			}
 		}
 		return true;
@@ -45,24 +45,24 @@ public class ASet<E> implements Set<E> {
 	public void clear() {
 		// TODO Auto-generated method stub
 
-		E[] temp = (E[]) new Object[0];
-		array = temp;
+		E[] t = (E[]) new Object[0];
+		array = t;
 
 	}
 
 	@Override
 	public boolean contains(Object o) {
 		// TODO Auto-generated method stub
-		boolean containsObject = false;
+		
 
 		for (int i = 0; i < size(); i++) {
 			if (array[i].equals(o)) {
-				containsObject = true;
-				break;
+				return true;
+				
 			}
 		}
 
-		return containsObject;
+		return false;
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class ASet<E> implements Set<E> {
 
 	@Override
 	public boolean remove(Object o) {
-		E[] temp = (E[]) new Object[size() - 1];
+		E[] t = (E[]) new Object[size() - 1];
 		int index = 0;
 		for (int i = 1; i < size(); i++) {
 			if (array[i].equals(o)) {
@@ -119,13 +119,13 @@ public class ASet<E> implements Set<E> {
 		if (contains(o)) {
 
 			for (int i = 0; i < index; i++) {
-				temp[i] = array[i];
+				t[i] = array[i];
 			}
-			for (int i = index; i < temp.length; i++) {
-				temp[i] = array[i + 1];
+			for (int i = index; i < t.length; i++) {
+				t[i] = array[i + 1];
 			}
 
-			array = temp;
+			array = t;
 
 			return true;
 		} else {
